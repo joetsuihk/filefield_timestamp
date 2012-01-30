@@ -1,0 +1,1 @@
+This is a module that add the timestamp in filefield to imagefield node edit form

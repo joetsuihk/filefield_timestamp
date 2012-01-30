@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * Implementation of hook_elements().
+ */
+function ge_filefield_timestamp_elements() {
+  return array(
+    'imagefield_widget' => array(
+      '#process' => 'ge_filefield_timestamp_widget_process',
+    ),
+    'filefield_widget' => array(
+      '#process' => 'ge_filefield_timestamp_widget_process',
+    ),
+    'imagefield_crop_widget' => array(
+      '#process' => 'ge_filefield_timestamp_widget_process',
+    ),
+  );
+}
+/**
+ * Element #process callback function.
+ */
+function ge_filefield_timestamp_widget_process($element, $edit, &$form_state, $form) {
+  if(isset($element['#value']['timestamp']))
+  {
+    $element['data']['timestamp']['body'] = array(
+      '#type' => 'markup',
+      '#title' => 'timestamp',
+      '#default_value' => '123',
+      '#value' => 'Timestamp: ' .date('Y-m-d H:i', $element['#value']['timestamp']),
+      '#prefix' => '<div>',
+      '#suffix' => '</div>',
+    );
+  }
+  return $element;
+}
